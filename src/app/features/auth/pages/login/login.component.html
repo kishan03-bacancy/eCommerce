@@ -1,0 +1,56 @@
+<mat-card class="login-card" appearance="outlined">
+  <div class="header-logo text-center">
+    <img src="assets/images/logo.png" />
+  </div>
+  <mat-card-title class="text-left">
+    Welcome to {{appName}}
+  </mat-card-title>
+  <mat-card-subtitle class="text-left">
+    {{loginString}}
+  </mat-card-subtitle>
+  <mat-card-content class="ak-no-padding">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" autocomplete="new-email" formControlName="email" />
+        @if(controls['email'].hasError('required')) {
+        <mat-error>Please provide an email address.</mat-error>
+        }
+        @if (controls['email'].hasError('email')) {
+        <mat-error>Please enter a valid email address.</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" [type]="showPassword ? 'text': 'password'" autocomplete="new-password"
+          formControlName="password" />
+        <mat-error>Password is required</mat-error>
+        <button type="button" mat-icon-button matSuffix (click)="showPassword = !showPassword;"><mat-icon>{{showPassword
+            ?
+            'visibility_off' : 'visibility'}}</mat-icon></button>
+      </mat-form-field>
+
+      <div class="wrapper d-flex align-center justify-fe">
+        <!-- <mat-checkbox color="primary">Remember me</mat-checkbox> -->
+        <a routerLink="/register">Forgot Password?</a>
+      </div>
+
+      <button class="submit-btn text-uppercase" mat-flat-button [disabled]="isLoading" [class.white-spinner]="isLoading"
+        color="primary" type="submit">Login</button>
+
+      <div class="or d-flex d-flex-center">
+        <span>OR</span>
+      </div>
+
+      <button type="button" class="google-login text-uppercase" mat-stroked-button [disabled]="isLoading"
+        [class.white-spinner]="isLoading">
+        <mat-icon svgIcon="ic_google_logo"></mat-icon>
+        Login with google</button>
+
+      <div class="action text-center">
+        <p>New on platform? <a routerLink="/register">Create an account</a></p>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>

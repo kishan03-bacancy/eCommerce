@@ -1,0 +1,81 @@
+@mixin authCard {
+  padding: 2.4rem;
+  z-index: 1;
+
+  @media (min-width: 560px) {
+    width: 40rem;
+  }
+
+  .header-logo {
+    margin-bottom: 2.4rem;
+    img {
+      margin: 0 auto;
+      width: 10rem;
+      max-height: 5.6rem;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+  }
+
+  mat-card-title {
+    line-height: 2.4rem;
+    margin-bottom: 0.8rem;
+  }
+  mat-card-subtitle {
+    margin-bottom: 2.4rem;
+  }
+}
+
+@mixin authForm {
+  mat-form-field,
+  button:not([mat-icon-button]) {
+    width: 100%;
+  }
+  mat-form-field {
+    margin-bottom: 0.6rem;
+  }
+  div.wrapper {
+    mat-checkbox {
+      margin-left: -1.1rem;
+    }
+    margin-bottom: 1.6rem;
+  }
+
+  .google-login {
+    margin: 0 0 2.4rem;
+    mat-icon {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+  }
+
+  button[mat-icon-button] {
+    mat-icon {
+      font-size: 2rem;
+      width: 2rem;
+      height: 2rem;
+      line-height: 1;
+      vertical-align: initial;
+    }
+  }
+}
+
+@mixin orSection {
+  margin: 1rem 2rem;
+  span {
+    font-size: 1.4rem;
+    display: inline-block;
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
+  }
+
+  &::after,
+  &::before {
+    position: relative;
+    width: 100%;
+    border-top: 1px solid var(--divider);
+    top: 50%;
+    content: "";
+    transform: translateY(50%);
+  }
+}

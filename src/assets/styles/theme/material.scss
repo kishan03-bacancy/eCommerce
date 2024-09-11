@@ -1,0 +1,102 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+$_palettes: (
+  primary: mat.$cyan-palette,
+  secondary: mat.$green-palette,
+  tertiary: mat.$yellow-palette,
+  neutral: (
+    0: #000000,
+    10: #161d1e,
+    20: #2b3133,
+    25: #363c3e,
+    30: #414849,
+    35: #4d5355,
+    40: #595f61,
+    50: #72787a,
+    60: #8b9293,
+    70: #a6acae,
+    80: #c1c8c9,
+    90: #dde3e5,
+    95: #ecf2f3,
+    98: #f4fafc,
+    99: #f7fdff,
+    100: #ffffff,
+    4: #090f11,
+    6: #0e1416,
+    12: #1a2122,
+    17: #252b2c,
+    22: #2f3637,
+    24: #343a3c,
+    87: #d5dbdd,
+    92: #e3e9eb,
+    94: #e9eff0,
+    96: #eff5f6,
+  ),
+  neutral-variant: (
+    0: #000000,
+    10: #111d20,
+    20: #263235,
+    25: #313e40,
+    30: #3c494c,
+    35: #485558,
+    40: #546164,
+    50: #6c797c,
+    60: #869396,
+    70: #a0aeb1,
+    80: #bbc9cc,
+    90: #d7e5e8,
+    95: #e5f3f7,
+    98: #eefcff,
+    99: #f7fdff,
+    100: #ffffff,
+  ),
+  error: mat.$red-palette,
+);
+
+$_rest: (
+  secondary: map.get($_palettes, secondary),
+  neutral: map.get($_palettes, neutral),
+  neutral-variant: map.get($_palettes, neutral-variant),
+  error: map.get($_palettes, error),
+);
+$_primary: map.merge(map.get($_palettes, primary), $_rest);
+$_tertiary: map.merge(map.get($_palettes, tertiary), $_rest);
+
+$light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: $_primary,
+      tertiary: $_tertiary,
+      // use-system-variables: true,
+    ),
+  )
+);
+$dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: $_primary,
+      tertiary: $_tertiary,
+      // use-system-variables: true,
+    ),
+  )
+);
+
+@include mat.core();
+
+html {
+  @include mat.core-theme($light-theme);
+  @include mat.all-component-themes($light-theme);
+  @include mat.system-level-colors($light-theme);
+  @include mat.color-variants-backwards-compatibility($light-theme);
+  // @media (prefers-color-scheme: dark) {
+  // }
+  .dark-theme {
+    @include mat.core-color($dark-theme);
+    @include mat.all-component-colors($dark-theme);
+    @include mat.system-level-colors($dark-theme);
+    @include mat.color-variants-backwards-compatibility($dark-theme);
+  }
+}

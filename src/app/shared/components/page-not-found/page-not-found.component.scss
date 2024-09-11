@@ -1,0 +1,26 @@
+@use "../../../../assets/styles/breakpoints.scss" as breakpoints;
+
+.not-found-wrapper {
+  div {
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  @include breakpoints.lt-md {
+    .bottom-layer,
+    .left-tree {
+      display: none;
+    }
+  }
+  .bottom-layer {
+    bottom: 0;
+    z-index: -1;
+    width: 100%;
+    position: absolute;
+  }
+  .left-tree {
+    left: 0;
+    bottom: 5rem;
+    position: absolute;
+  }
+}

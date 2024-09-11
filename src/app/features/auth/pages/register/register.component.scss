@@ -1,0 +1,13 @@
+@use "../../style/auth" as auth;
+
+.register-card {
+  @include auth.authCard();
+
+  form {
+    @include auth.authForm();
+  }
+
+  .or {
+    @include auth.orSection();
+  }
+}

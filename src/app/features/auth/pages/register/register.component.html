@@ -1,0 +1,80 @@
+<mat-card class="register-card" appearance="outlined">
+  <div class="header-logo text-center">
+    <img src="assets/images/logo.png" />
+  </div>
+  <mat-card-title class="text-left">
+    Adventure starts here 🚀
+  </mat-card-title>
+  <mat-card-subtitle class="text-left">
+    Make your app management easy and fun!
+  </mat-card-subtitle>
+
+  <mat-card-content class="ak-no-padding">
+    <form [formGroup]="signupForm" (ngSubmit)="signup()" novalidate autocomplete="off">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" autocomplete="off" formControlName="name" />
+        <mat-error>Please provide name</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Email" autocomplete="new-email" formControlName="email" />
+        @if (controls['email'].hasError('required')) {
+        <mat-error>Please provide an email address.</mat-error>
+        }
+        @if (controls['email'].hasError('email')) {
+        <mat-error>Please enter a valid email address.</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input matInput placeholder="Phone" autocomplete="new-phone" formControlName="phone" />
+        @if (controls['phone'].hasError('required')) {
+        <mat-error>Please provide phone number.</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Password" [type]="showPassword ? 'text' : 'password'" autocomplete="new-password"
+          formControlName="password" />
+        <button type="button" mat-icon-button matSuffix
+          (click)="showPassword = !showPassword; $event.stopPropagation(); $event.preventDefault()"><mat-icon>{{showPassword
+            ?
+            'visibility_off' : 'visibility'}}</mat-icon></button>
+        @if (controls['password'].hasError('minlength')){
+        <mat-error>Password must be 6 character long.</mat-error>
+        }
+        @if (controls['password'].hasError('required')){
+        <mat-error>Password is required</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="wrapper d-flex f-column  justify-sb">
+        <mat-checkbox color="primary" [formControl]="termsControl">I agree to <a href="#">privacy policy &
+            terms</a></mat-checkbox>
+        @if (formSubmitted && !termsControl.value) {
+        <mat-error color="warn" class="text-small">Please accept terms & conditions</mat-error>
+        }
+      </div>
+
+      <button class="submit-btn text-uppercase" mat-flat-button [disabled]="isLoading" [class.white-spinner]="isLoading"
+        color="primary" type="submit">Sign up</button>
+
+      <div class="or d-flex d-flex-center">
+        <span>OR</span>
+      </div>
+
+      <button type="button" class="google-login text-uppercase" mat-stroked-button [disabled]="isLoading"
+        [class.white-spinner]="isLoading">
+        <mat-icon svgIcon="ic_google_logo"></mat-icon>
+        sign up with google</button>
+
+      <div class="action text-center">
+        <p>Already have an account? <a routerLink="/login">Login instead</a></p>
+      </div>
+
+    </form>
+  </mat-card-content>
+</mat-card>

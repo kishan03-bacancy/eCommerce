@@ -1,0 +1,162 @@
+/*--------------------------------------
+    Typography
+--------------------------------------*/
+
+@use "./breakpoints.scss" as breakpoints;
+
+a {
+  text-decoration: none;
+  color: var(--color-primary);
+  font-family: 'Jost';
+}
+pre {
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 0;
+  &:not(p) {
+    font-family: 'Jost';
+  }
+}
+
+a,
+p,
+pre,
+span,
+div {
+  font-size: 1.6rem;
+  @include breakpoints.lt-sm {
+    font-size: 1.4rem;
+  }
+}
+
+h1 {
+  font-size: 9.6rem;
+  line-height: 1.16;
+  margin: 0 0 0.8rem;
+  &.primary {
+    color: var(--color-primary);
+  }
+  @include breakpoints.lt-md {
+    font-size: 4.2rem;
+  }
+  @include breakpoints.lt-sm {
+    font-size: 3.6rem;
+  }
+}
+
+h2 {
+  font-size: 6rem;
+  line-height: 1.16;
+  margin: 0 0 0.8rem;
+  &.primary {
+    color: var(--color-primary);
+  }
+  @include breakpoints.lt-md {
+    font-size: 3.6rem;
+  }
+  @include breakpoints.lt-sm {
+    font-size: 3.2rem;
+  }
+}
+
+h3 {
+  font-size: 4.8rem;
+  line-height: 1.16;
+  margin: 0 0 0.6rem;
+  &.primary {
+    color: var(--color-primary);
+  }
+  @include breakpoints.lt-md {
+    font-size: 3.2rem;
+  }
+  @include breakpoints.lt-sm {
+    font-size: 2.8rem;
+  }
+}
+
+h4 {
+  font-size: 3.2rem;
+  line-height: 1.25;
+  margin: 0 0 0.6rem;
+  &.primary {
+    color: var(--color-primary);
+  }
+  @include breakpoints.lt-md {
+    font-size: 2.2rem;
+  }
+  @include breakpoints.lt-sm {
+    font-size: 2rem;
+  }
+}
+
+h5 {
+  font-size: 2.4rem;
+  line-height: 1.25;
+  margin: 0 0 0.4rem;
+  &.primary {
+    color: var(--color-primary);
+  }
+  @include breakpoints.lt-md {
+    font-size: 1.8rem;
+  }
+  @include breakpoints.lt-sm {
+    font-size: 1.6rem;
+  }
+}
+
+h6 {
+  font-size: 2rem;
+  line-height: 1.25;
+  margin: 0 0 0.4rem;
+  &.primary {
+    color: var(--color-primary);
+  }
+  @include breakpoints.lt-sm {
+    font-size: 1.4rem;
+  }
+}
+
+.text-small {
+  font-size: 1.4rem;
+}
+
+.text-xsmall {
+  font-size: 1.2rem;
+}
+
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+
+.text-capitalize {
+  text-transform: capitalize !important;
+}
+
+.text-muted {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
