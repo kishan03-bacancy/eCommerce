@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:eCommerce": "node dist/eCommerce/server/server.mjs"
+    "start": "npm run prebuild && ng serve",
+    "build": "npm run prebuild && ng build",
+    "watch": "npm run prebuild && ng build --watch --configuration development",
+    "test": "npm run prebuild && ng test",
+    "serve:ssr:eCommerce": "node dist/eCommerce/server/server.mjs",
+    "prebuild": "ts-node svgIcons.ts"
   },
   "private": true,
   "dependencies": {
