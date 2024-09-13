@@ -81,6 +81,7 @@ export class AuthService {
   logout(): void {
     // logout code
     this.localStorageService.clearAll();
+    this.routingService.redirectToAuth();
   }
 
   registerWithGoogle(): void {

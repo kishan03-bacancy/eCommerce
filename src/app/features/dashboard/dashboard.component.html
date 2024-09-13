@@ -4,8 +4,19 @@
   </button>
   <span>My App</span>
   <span class="example-spacer"></span>
-  <mat-slide-toggle class="example-margin theme-switch" [checked]="checked" labelPosition="before"
-    (change)="toggle($event)">
-    Dark Theme
-  </mat-slide-toggle>
+
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>settings_outline</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="toggle($event)">
+      <mat-icon [svgIcon]="!checked ? 'dark_mode': 'light_mode'"></mat-icon>
+      <span>{{!checked ? 'Dark Mode': 'Light Mode'}}</span>
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+
 </mat-toolbar>
