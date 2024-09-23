@@ -1,0 +1,52 @@
+<mat-toolbar class="header p-sticky top-0">
+  <mat-toolbar-row>
+    @if (isHandset) {
+    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    }
+    @if (!isHandset) {
+    <a routerLink="/" aria-label="Redirect to dashboard" class="header-logo">
+      <img src="assets/images/logo-min.png" loading="eager" alt="Logo" width="80" height="45">
+    </a>
+    }
+    <span class="extra-space"></span>
+
+    @if(!cartUrl()?.includes('/cart')) {
+    <a mat-flat-button class="mr-100 cart" color="accent" [matBadgeSize]="'large'"
+      [matBadge]="cartCount === 0 ? null : cartCount" [routerLink]="['/cart']">
+      <mat-icon class="pl-50 pr-50">shopping_cart</mat-icon>
+    </a>
+    }
+
+    @if (user?.email) {
+    <div class="header-user">
+      <button mat-button [matMenuTriggerFor]="menu" aria-label="Header menu" class="logoutMenu">
+        <div class="d-flex d-flex-center">
+          <div class="user-avatar user-avatar-primary">
+            @if (user?.image) {
+            <app-image classNames="user-avatar-img" [src]="user?.image"
+              alt="Profile picture of {{user?.firstname}}"></app-image>
+            }
+            @else {
+            <span class="initials">CN</span>
+            }
+          </div>
+          <span class="text-lowercase"> {{user?.email}} </span>
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </div>
+      </button>
+      <mat-menu #menu="matMenu" xPosition="before">
+
+        <button aria-label="Toggle Theme" mat-menu-item (click)="toggleTheme()">
+          <mat-icon [svgIcon]="themeToggleButton.icon"></mat-icon>{{themeToggleButton.text}}
+        </button>
+
+        <button aria-label="Logout" mat-menu-item (click)="logout()">
+          <mat-icon svgIcon="logout"></mat-icon>Logout
+        </button>
+      </mat-menu>
+    </div>
+    }
+  </mat-toolbar-row>
+</mat-toolbar>

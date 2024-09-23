@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MaterialModule } from '../../../../shared/dependencies/material.module';
 import {
   FormControl,
   FormGroup,
@@ -8,13 +7,25 @@ import {
 } from '@angular/forms';
 import { tap } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
-import { RouterModule } from '@angular/router';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { RouterLink } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [MaterialModule, MatCheckboxModule, ReactiveFormsModule, RouterModule],
+  imports: [
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
+    RouterLink,
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })

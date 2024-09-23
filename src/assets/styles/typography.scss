@@ -22,7 +22,7 @@ h4,
 h5 {
   margin: 0;
   &:not(p) {
-    font-family: 'Jost';
+    font-family: 'Jost' !important;
   }
 }
 

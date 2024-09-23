@@ -15,7 +15,7 @@ export class RoutingService {
 
   // redirect to login
   redirectToAuth() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
   }
 
   // redirect to page-not-found

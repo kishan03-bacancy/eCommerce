@@ -1,0 +1,64 @@
+<!-- App header - desktop -->
+@let isHandset = (isHandset$ | async);
+@if (!isHandset) {
+<app-header [isHandset]="isHandset" (clicked)="drawer.toggle()"></app-header>
+}
+
+<mat-sidenav-container id="container" [class.mobile-container]="isHandset" fullscreen [class.collapsed]="!isExpanded"
+  [class.is-dark]="themeService.themeSignal()">
+  <!--Side Nav Menus Start-->
+  <mat-sidenav #drawer class="ak-sidenav" [opened]="!isHandset" [mode]="isHandset ? 'over' : 'side'"
+    [ngClass]="getSidenavClass()" fixedInViewport="true" [fixedTopGap]="!isHandset ? 56 : 0">
+
+    <!-- Mobile logo in sidebar -->
+    @if (isHandset) {
+    <div class="sidebar-header-mobile d-flex align-center justify-sb">
+      <a routerLink="/" class="logo-mobile d-flex align-center font-md" aria-label="Redirect to dashboard">
+        <img src="assets/images/logo-min.png" alt="Logo" height="45" width="80" />
+      </a>
+      <button mat-icon-button (click)="drawer.close()" aria-label="Close side nav">
+        <mat-icon color="primary" matListIcon>close</mat-icon>
+      </button>
+    </div>
+    }
+    @else {
+    <button class="nav-toggler line-height-1" aria-label="Toggle sidenav" [disableRipple]="true" mat-icon-button
+      (click)="isExpanded = !isExpanded">
+      <mat-icon svgIcon="double_arrow"></mat-icon>
+    </button>
+    }
+
+    <mat-nav-list>
+      @for (item of navLinks; track $index) {
+      <a mat-list-item routerLink="{{ item?.link }}" attr.aria-label="Navigate to {{item?.title}}"
+        routerLinkActive="active-list-item">
+        <mat-icon matListItemIcon [svgIcon]="item.icon"></mat-icon>
+        @if (isExpanded) {
+        <h2 matListItemTitle>{{ item?.title }}</h2>
+        }
+      </a>
+      }
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/settings" aria-label="Navigate to Settings" routerLinkActive="active-list-item">
+        <mat-icon matListItemIcon [svgIcon]="'settings_outline'"></mat-icon>
+        @if (isExpanded) {
+        <h2 matListItemTitle>Settings</h2>
+        }
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <!--Side Nav Menus End -->
+
+  <!-- Side Nav Content Start -->
+  <mat-sidenav-content class="ak-sidenav-content" [class.collapsed-nav]="!isExpanded" [class.mobile-nav]="isHandset">
+    <!-- App header - Mobile -->
+    @if (isHandset) {
+    <app-header [isHandset]="isHandset" (clicked)="drawer.toggle()"></app-header>
+    }
+    <!-- Main Content / Router Content -->
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+  <!-- Side Nav Content End -->
+</mat-sidenav-container>

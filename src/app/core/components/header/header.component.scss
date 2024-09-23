@@ -1,0 +1,35 @@
+:host {
+  --mat-toolbar-container-background-color: transparent;
+}
+.header {
+  border-bottom: 0.1rem solid #cfcfcf;
+  .extra-space {
+    flex: 1 1 auto;
+  }
+  .header-logo {
+    text-decoration: none;
+
+    img {
+      // height: 4.8rem;
+      // transform: scale(1.1);
+      vertical-align: middle;
+      border: 0;
+    }
+  }
+  .header-user {
+    .logoutMenu {
+      height: 4rem;
+      padding: 0 0.8rem 0 0;
+      // padding-left: 0;
+    }
+  }
+}
+
+.cart {
+  mat-icon {
+    font-size: 2.4rem !important;
+    width: 2.4rem !important;
+    height: 2.4rem !important;
+    margin: 0;
+  }
+}

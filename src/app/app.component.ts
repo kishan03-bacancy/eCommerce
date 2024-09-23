@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CommonActionService } from './shared/services/common-action.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
+import { svgIcons } from './shared/constants/svg-icons.data';
+import { SVGIcon } from './shared/models/svg-icon.model';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +14,24 @@ import { CommonActionService } from './shared/services/common-action.service';
 })
 export class AppComponent {
   title = 'eCommerce';
-  constructor(private commonActionService: CommonActionService) {}
+  constructor(
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+  ) {}
 
   ngOnInit() {
-    this.loadIcons();
+    this.registerSVGIcons();
   }
 
-  loadIcons() {
-    this.commonActionService.registerSVGIcons();
+  // register all icons
+  registerSVGIcons() {
+    svgIcons.forEach((icon: SVGIcon) => {
+      this.matIconRegistry.addSvgIcon(
+        icon.name,
+        this.domSanitizer.bypassSecurityTrustResourceUrl(
+          `assets/icons/${icon.fileName}`
+        )
+      );
+    });
   }
 }

@@ -2,12 +2,13 @@
 
   <div class="ak-padding d-flex f-column align-center">
     <h1 class="title primary">404</h1>
-    <h4 class="message text-center">Page not found <mat-icon>warning</mat-icon></h4>
+    <h4 class="message text-center">Page not found!</h4>
     <p class="message text-center">We couldn't find what you are looking for.</p>
-    <img height="400" alt="error-illustration" src="/assets/images/pages/404.png" class="illustration mb-100">
-    <button mat-button color="primary" aria-label="Go to dashboard" routerLink="/">Go To Dashboard</button>
-    <img class="bottom-layer"
-      [src]="isThemeDark ? 'assets/images/pages/misc-mask-dark.png' : 'assets/images/pages/misc-mask-light.png'">
+    <img loading="lazy" height="400" alt="error-illustration" src="/assets/images/pages/404.png"
+      class="illustration mb-100">
+    <a mat-button color="primary" aria-label="Go to dashboard" routerLink="/">Go To Dashboard</a>
+    <!-- <img class="bottom-layer"
+      [src]="isThemeDark ? 'assets/images/pages/misc-mask-dark.png' : 'assets/images/pages/misc-mask-light.png'"> -->
     <img src="assets/images/pages/tree.png" class="left-tree" />
   </div>
 

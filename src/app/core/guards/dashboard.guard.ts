@@ -18,7 +18,6 @@ export const dashboardGuard: CanActivateFn = (
   const token = localStorage.getItem('ACCESS_TOKEN', '');
   if (isPlatformBrowser(platform)) {
     if (token) {
-      console.log('token', token);
       return inject(Router).createUrlTree(['/dashboard']);
     }
   }

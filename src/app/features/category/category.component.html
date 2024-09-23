@@ -1,0 +1,39 @@
+<div class="wrapper">
+
+  <h4>Category List</h4>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="categoryData" class="demo-table">
+      @for (column of columns; track column) {
+      <ng-container [matColumnDef]="column.columnDef">
+        <th mat-header-cell *matHeaderCellDef>
+          {{column.header}}
+        </th>
+        <td mat-cell *matCellDef="let row">
+          @if (column.header === '') {
+          <a mat-button color="accent" [routerLink]="['/products', row.slug]">View Products</a>
+          } @else{ {{column.cell(row)}} }
+        </td>
+      </ng-container>
+      }
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="3">
+          @if(isLoading) {
+          <h2 class="text-center content-divider">Loading...</h2>
+          }@else {
+          No Data
+          }
+        </td>
+      </tr>
+
+
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+
+</div>

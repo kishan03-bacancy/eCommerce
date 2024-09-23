@@ -3,7 +3,8 @@ import { APIResponse } from '../../../shared/services/api.service';
 export declare namespace auth {
   export namespace login {
     interface Request {
-      email: string;
+      email?: string;
+      username?: string;
       password: string;
     }
 

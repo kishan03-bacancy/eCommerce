@@ -1,0 +1,48 @@
+.demo-table {
+  width: 100%;
+}
+.mat-elevation-z8 {
+  border-radius: 16px;
+  overflow: hidden !important;
+}
+.mat-column-actions {
+  width: 20%;
+}
+.mat-column-position {
+  width: 30%;
+}
+
+.example-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-actions {
+  mat-icon {
+    font-size: 2.4rem;
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
+
+// .wrapper {
+//   height: ;
+//   overflow: auto;
+// }
+.input {
+  width: 3.6rem;
+  height: 3.6rem;
+  text-align: center;
+  margin: 0;
+  padding: 0 5px;
+  border-radius: 8px;
+  border: 1px solid;
+}

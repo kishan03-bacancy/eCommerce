@@ -1,0 +1,6 @@
+<ng-container>
+  <div>
+    <img loading="lazy" [class]="classNames" [class.loading]="showLoader" [alt]="alt" [src]="src" (load)="onLoad()"
+      (error)="onError()" />
+  </div>
+</ng-container>

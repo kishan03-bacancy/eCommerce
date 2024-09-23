@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MaterialModule } from '../../../../shared/dependencies/material.module';
 import {
   FormControl,
   FormGroup,
@@ -8,12 +7,23 @@ import {
 } from '@angular/forms';
 import { tap } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MaterialModule, ReactiveFormsModule, RouterModule],
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -39,8 +49,11 @@ export class LoginComponent {
 
   setLoginFormControl() {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
     });
   }
 
@@ -48,7 +61,7 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.isLoading = true;
       this.authService
-        .mockLogin(this.loginForm.value)
+        .login(this.loginForm.value)
         .pipe(tap(() => (this.isLoading = false)))
         .subscribe();
     }

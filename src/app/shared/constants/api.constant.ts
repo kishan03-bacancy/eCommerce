@@ -4,7 +4,13 @@ export const API = {
     REGISTER: '/auth/register',
     VERIFY_EMAIL: '/auth/verifyEmail',
   },
+  CATEGORY: {
+    LIST: '/products/categories',
+  },
+  PRODUCTS: {
+    LIST: '/products/category/',
+  },
   USER: {
-    GET_DETAIL: '/user/detail',
+    AUTH_USER: '/user/me',
   },
 };

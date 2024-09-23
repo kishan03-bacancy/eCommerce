@@ -32,8 +32,28 @@ export class AuthService {
   }
 
   login(payload: auth.login.Request): Observable<auth.login.Response> {
-    return this.apiService.post(API.AUTH.LOGIN, payload).pipe(
-      map((res) => res as auth.login.Response),
+    const formData = {
+      ...payload,
+      expiresInMins: 60 * 24 * 7,
+    };
+    formData.username = 'emilys';
+    formData.password = 'emilyspass';
+    return this.apiService.post(API.AUTH.LOGIN, formData).pipe(
+      map((res: any) => {
+        const response: any = {
+          status: false,
+          message: 'Invalid credentials!',
+        };
+        if (res?.token) {
+          response.status = true;
+          response.message = 'Login Success!';
+          response.data = {
+            token: res.token,
+            user: res,
+          };
+        }
+        return response as auth.login.Response;
+      }),
       map((res: auth.login.Response) => {
         if (res.status) {
           this.processAuthResponse(res);
@@ -47,7 +67,6 @@ export class AuthService {
     return of('').pipe(
       delay(1500),
       map((string) => {
-        console.log('delay done', payload);
         return {
           status: true,
           message: 'success',

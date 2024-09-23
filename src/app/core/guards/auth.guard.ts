@@ -20,7 +20,7 @@ export const authGuard: CanActivateFn = (
 
   if (isPlatformBrowser(platform)) {
     if (!token) {
-      return inject(Router).createUrlTree(['/login']);
+      return inject(Router).createUrlTree(['/auth/login']);
     }
   }
 

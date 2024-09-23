@@ -1,6 +1,6 @@
 <mat-card class="login-card" appearance="outlined">
   <div class="header-logo text-center">
-    <img src="assets/images/logo.png" />
+    <img src="assets/images/logo-min.png" />
   </div>
   <mat-card-title class="text-left">
     Welcome to {{appName}}
@@ -11,20 +11,25 @@
   <mat-card-content class="ak-no-padding">
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" autocomplete="new-email" formControlName="email" />
-        @if(controls['email'].hasError('required')) {
-        <mat-error>Please provide an email address.</mat-error>
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" autocomplete="new-email" formControlName="username" />
+        @if(controls['username'].hasError('required')) {
+        <mat-error>Please provide an username.</mat-error>
         }
-        @if (controls['email'].hasError('email')) {
-        <mat-error>Please enter a valid email address.</mat-error>
-        }
+        <!-- @if (controls['username'].hasError('username')) {
+        <mat-error>Please enter a valid username address.</mat-error>
+        } -->
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
         <input matInput placeholder="Password" [type]="showPassword ? 'text': 'password'" autocomplete="new-password"
           formControlName="password" />
+        @if (controls['password'].hasError('required')) {
         <mat-error>Password is required</mat-error>
+        }
+        @if (controls['password'].hasError('minlength')) {
+        <mat-error>Password should be at least 6 characters.</mat-error>
+        }
         <button type="button" mat-icon-button matSuffix (click)="showPassword = !showPassword;"><mat-icon>{{showPassword
             ?
             'visibility_off' : 'visibility'}}</mat-icon></button>
@@ -32,7 +37,7 @@
 
       <div class="wrapper d-flex align-center justify-fe">
         <!-- <mat-checkbox color="primary">Remember me</mat-checkbox> -->
-        <a routerLink="/register">Forgot Password?</a>
+        <a routerLink="/auth/register">Forgot Password?</a>
       </div>
 
       <button class="submit-btn text-uppercase" mat-flat-button [disabled]="isLoading" [class.white-spinner]="isLoading"
@@ -48,7 +53,7 @@
         Login with google</button>
 
       <div class="action text-center">
-        <p>New on platform? <a routerLink="/register">Create an account</a></p>
+        <p>New on platform? <a routerLink="/auth/register">Create an account</a></p>
       </div>
 
     </form>
